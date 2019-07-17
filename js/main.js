@@ -13,6 +13,9 @@ const OUTPUT_LIMIT = -1;
 /* --- event listeners ---------------------------------------------------- */
 window.onload = init();
 
+/**
+ * populates external data, wires up events & widgets
+ */
 function init() {
     getCounties();
 
@@ -42,6 +45,14 @@ function init() {
 
 /* --- functions ---------------------------------------------------------- */
 
+/**
+ * Executes an arbitrary query against California Employment Development
+ * Department's (CA EDD) data.
+ * Usually will be followed by a call to done(data => {...})
+ * which will handle the query results.
+ * @param query the query to execute
+ * @returns an jqeury deferred ajax object.
+ */
 function queryEDD(query) {
     if (OUTPUT_LIMIT === 0) {
         console.log(`output limit is 0, preventing api call.\nQuery was: ${query}`);
@@ -59,6 +70,9 @@ function queryEDD(query) {
     })
 }
 
+/**
+ * Gets a list of California counties from CA EDD
+ */
 function getCounties() {
     let query = `SELECT area_name WHERE area_type = 'County' GROUP BY area_name`;
     queryEDD(query)
@@ -70,7 +84,12 @@ function getCounties() {
         });
 }
 
-
+/**
+ * Gets a table of Employment Data from CA EDD
+ * @param county the county to lookup
+ * @param month the month to lookup
+ * @param year the year to lookup
+ */
 function getTableData(county, month, year) {
     let query = `SELECT industry_title, seasonally_adjusted, current_employment` +
         ` WHERE area_name = '${county}' AND month = '${month}' AND year = '${year}'` +
@@ -78,7 +97,10 @@ function getTableData(county, month, year) {
     queryEDD(query, 5).done(data => populateTable(data));
 }
 
-
+/**
+ * A convenience function to extract a date from the monthYear field.
+ * @returns {Date}
+ */
 function extractDate() {
     let [m, year] = monthYear.val().split('/');
 
@@ -87,6 +109,15 @@ function extractDate() {
     return date;
 }
 
+
+/**
+ * Populates the table given some table data
+ * Note: the table data can be any homogeneous array of objects,
+ * the header row will be based on the first element's keyset and
+ * subsequent rows will be populated based on lookups against that
+ * keyset.
+ * @param data the data to populate into the table
+ */
 function populateTable(data) {
     // clear the table
     tableHeader.empty();
