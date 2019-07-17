@@ -1,0 +1,287 @@
+﻿
+Sign Up Page using AJAX
+
+completed example:
+    http://cst336.herokuapp.com/projects/signup/
+
+
+requirements:
+signup:
+    enter desired username -> show color-coded message about availability
+
+enter zip code -> update city, lat & long
+zip code not found -> show not found message
+select a state -> update counties list (dropdown)
+from web-api, show list of US States
+page has nice look/feel (20+ css rules)
+
+click submit -> validate:
+    non-empty username
+    6+ chars in password
+    retype pass == pass
+validation passes -> show welcome page
+
+
+enter desired username -> call web-api via AJAX -> show color-coded message about availability
+select a state -> call different web-api -> update counties list (dropdown)
+
+this lab uses:
+    jQuery
+    Events & Handlers
+    AJAX
+    HTML Forms
+    JavaScript validation
+
+plan against requirements:
+    1. which HTML elements?
+    2. which JavaScript events?
+    3. Why AJAX?
+
+--- Part 1: Create the HTML Form ---
+
+create index.html
+add form elements to it
+
+--- Part 2: zip code -- add AJAX ---
+AJAX is useful for updating part of a page without reload -- a good user experience
+
+add jquery lib from:
+    jquery.com/download
+
+add event to zip field
+
+enter zip code -> update city, lat & long
+zip code not found -> web-api via AJAX -> show not found message
+
+wire service call results to element updates
+service url:
+    https://cst336.herokuapp.com/projects/api/cityInfoAPI.php
+ex:
+    https://cst336.herokuapp.com/projects/api/cityInfoAPI.php?zip=93955
+
+--- Part 3: Populate County Menu ---
+service url:
+    https://cst336.herokuapp.com/projects/api/countyListAPI.php
+ex:
+    https://cst336.herokuapp.com/projects/api/countyListAPI.php?state=ca
+
+add event to state field (same process as part 2)
+
+--- Part 4: Check Username Availability ---
+service url:
+    https://cst336.herokuapp.com/projects/api/usernamesAPI.php
+ex:
+    https://cst336.herokuapp.com/projects/api/usernamesAPI.php?username=eeny
+
+usernames already taken are: eeny, meeny, miny, maria, and john.
+
+add event to username field (same process as part 2)
+
+--- Part 5. Submit the Form ---
+
+
+
+Currently, nothing is happening when clicking on the “Sign Up” button. If this were a real sign up page, the data should be submitted to a web server, added to a database, and then a new page should show up informing users that their account was created.
+We’ll skip processing the data in the web server, we’ll just submit it to the server and display a new page. 
+
+
+5.1  Add the <form> tag. When form data needs to be submitted to a web server or you need to display a new page after the submission, then all form elements must be included within the <form></form> tags. 
+
+
+  
+
+   :
+  
+
+
+
+Save the file, reload the page, fill out the form, and click on the “Sign up!” button… pay attention to the URL.  By adding the <form> tags, the form is being submitted to the web server and the page is reloaded.
+
+
+
+
+
+
+
+
+
+
+Important!  
+
+
+When using the <form></form> tags the form data is submitted to the server and the page is reloaded. This means that you won’t be able to see anything that you might be displaying on the page using JavaScript. 
+
+
+If you did the “Guess a Number” or  “Hangman” labs, you can try surrounding the <input> elements with the  <form> tags and then check how the page is reloaded when clicking on the buttons. 
+	
+
+
+
+  
+
+Fill out the Sign up form and submit it…  Do you notice anything wrong in the URL?
+
+
+Yes! All the information you typed, including the password, are displayed in the URL!
+
+
+	
+
+
+
+5.2  Use the POST method in the form.  By default, all forms use the GET method when the data is submitted to the server. When using the GET method, all form elements that have the “name” attribute are appended to the URL, separated by a question mark.  If sending sensitive information that shouldn’t be displayed in the URL, then use the “POST” method:
+
+
+  
+
+
+
+Save it, reload the page, and submit the form. You shouldn’t see the form data appended to the URL any longer.
+
+
+
+
+
+
+Notes:
+
+
+In general, the POST method should be used when:
+
+
+   1. Submitting sensitive information
+   2. Submitting data that will be saved or updated in a database or file
+   3. Submitting binary data
+
+
+The GET method should be used when retrieving data from the server.
+
+
+Go to Google and search for something… what method are they using?
+Hint: Take a look at the URL after clicking on the Search button.
+
+
+	
+
+5.3  Specify a different target file when submitting the form. By default, the same page is reloaded when submitting the form. However, you can specify a different URL. Let’s send the users to another file called “welcome.html” when submitting the form by adding the action attribute within the form tag:
+  
+
+If you try submitting the form right now, it will show a “Page not found” error, since the welcome.html file doesn’t exist.
+
+
+Note: If this was a real sign up page, the action would be the URL of a backend program that would create a new record in the database.
+
+
+5.4  Create a “welcome.html” file using the HTML template and display any message, something like: “Congrats! Your account was created!”
+
+
+        Try submitting the form once more. You should be able to see the welcome message.        
+
+Lesson 6. Validate Form Data
+ One of the most common uses of JavaScript is to validate form data. Data shouldn’t be submitted to the web server if it is invalid or inaccurate.  For instance, if you enter a username that exist in the database (e.g., eeny, meeny, miny), an error message will be displayed but nothing is preventing the form from being submitted. 
+
+In this section, we’ll use JavaScript to validate that the username is available and that the password entered is the same as  “password again”, otherwise, the form won’t get submitted (the content of the welcome.html file won’t be displayed).
+
+
+6.1   Add an id to the <form> tag. We’ll use this id to add an “on submit” event to it.
+
+
+  
+
+
+
+
+
+Note: The order of the tag attributes does NOT matter…. But it’s helpful to follow a convention (e.g. ordering them alphabetically, always start with the id, if any, etc.)
+
+
+6.2  Add the “on submit” event to the form, using jQuery. Make sure that you include it outside of any other event handler. For testing purposes, let’s display an alert message. 
+
+  
+
+
+
+        Save it, reload the page, and submit the form. The alert message should display before going to the “welcome.html” page.
+
+
+6.3  Prevent the form from being submitted by passing the event as a parameter and using the preventDefault method:
+  
+
+Save it and try it. The “welcome.html” page shouldn’t be displayed. The submission was prevented.
+
+
+Notes:
+
+
+When any event is triggered, the first parameter passed in the function includes all the information and methods about the event.  One of these methods is “preventDefault()” which prevents executing the default functionality of the event. In the case of the “submit” event, the default functionality is the form submission.
+
+
+	
+
+
+
+6.4  Add a variable to keep track of whether the username is available or not. Add the variable right below the <script> tag.
+
+
+  
+
+
+
+6.5  Within the “username” event handler, update the “usernameAvailable” variable based on the AJAX call that checks the username availability.
+
+
+  
+
+  
+
+
+
+
+
+6.6  Add a function that validates the form data and, based on the return value of this function, prevent the submission of the form. The form will be valid if the value of “usernameAvailable” is true:
+
+
+  
+
+
+
+Save the file, reload the page, and try it by entering available and not available usernames. You should be taken to the Welcome page only when entering available usernames.
+
+
+6.7 Validate that the username is not left blank. A new condition needs to be added to the “isFormValid()” function to check the username length. The corresponding error message is displayed.
+
+  
+
+
+
+6.8 Validate that the password is the same as “password again”. 
+First, we’ll need to add a new <span> tag right after the “passwordAgain” textbox as a placeholder to display there the error message if they don’t match.
+
+
+  
+
+
+
+        Then, we’ll need to modify the “isFormValid()” function again to compare the values of password and passwordAgain and display the corresponding error message:
+
+
+  
+
+  
+
+Important!
+
+
+JavaScript validation can be bypassed by users. 
+Its main goal is to warn users about an invalid input as fast as possible,   instead of having to wait to get the error message from the web server. However, the actual validation must be done in the web server as well, to ensure no invalid data has been submitted.
+
+
+	
+
+
+
+It’s Your Turn!  
+ 
+   1. Validate that the password has at least 6 characters
+   2. Use this Web API to populate all US states initially
+   3. Add CSS to improve the look of the web page

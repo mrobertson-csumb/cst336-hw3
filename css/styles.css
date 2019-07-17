@@ -1,0 +1,84 @@
+form {
+    display: flex;
+    flex-flow: row wrap;
+    row-gap: 2em;
+}
+
+.form-section {
+    display: table;
+    border-spacing: .25em;
+    border-collapse: separate;
+    border: 0;
+    font-family: 'Fira Code', monospace;
+}
+
+.form-section .form-item {
+    display: table-row;
+}
+
+.form-item > * {
+    display: table-cell;
+    margin: 1em;
+}
+
+.form-item .form-msg {
+    font-family: 'Berkshire Swash', cursive;
+    font-size: medium;
+    padding: 0 0 0 1em;
+}
+
+.form-item input[type=radio] {
+    margin-left: .5em;
+}
+
+.form-span {
+    margin-bottom: .5em;
+}
+
+legend, h1, h2 {
+    font-size: xx-large;
+    font-family: 'Berkshire Swash', cursive;
+    font-weight: bolder;
+}
+
+td {
+    font-family: "Fira Code", monospace;
+}
+
+section {
+    margin-left: 2vw;
+    margin-top: 4em;
+}
+
+section:first-of-type {
+    margin-top: 2em;
+}
+
+main {
+    margin-left: 2vw
+}
+
+thead {
+    font-size: large;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+.btn-primary {
+    font-size: large;
+    font-family: 'Berkshire Swash', cursive;
+    font-weight: bolder;
+}
+
+
+body * {
+    color: #286190;
+}
+
+.apply-body-color {
+    filter: invert(29%) sepia(22%) saturate(1685%) hue-rotate(165deg) brightness(103%) contrast(84%);
+}

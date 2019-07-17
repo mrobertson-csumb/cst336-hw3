@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<h1>Sign Up</h1>
+
+<form id="signup" method="post" action="welcome.html">
+    <label for="first_name">First Name:</label>
+    <input id="first_name" type="text" name="fName"><br/>
+
+    <label for="last_name">Last Name:</label>
+    <input id="last_name" type="text" name="lName"><br/>
+
+    <label for="gender">Gender:</label>
+    <div id="gender">
+        <input id="male" type="radio" name="gender" value="m">
+        <label for="male">Male</label>
+        <input id="female" type="radio" name="gender" value="f">
+        <label for="female">Female</label>
+    </div>
+    <label for="zip">Zip Code:</label>
+    <input id="zip" type="text" name="zip"><br/>
+    <label for="city">City:</label>
+    <span id="city"></span><br/>
+
+    <label for="lat">Latitude:</label>
+    <span id="lat"></span><br/>
+    <label for="lng">Longitude:</label>
+    <span id="lng"></span><br/>
+
+    <label for="state">State:</label>
+    <select id="state" name="state"></select>
+    <br/>
+    <label for="county">County:</label>
+    <select id="county">
+        <option value="">- Select One -</option>
+    </select><br/>
+
+    <label for="username">Desired Username:</label>
+    <input id="username" type="text" name="username">
+    <div id="usernameMess"></div>
+    <br/>
+
+    <label for="password">Password:</label>
+    <input id="password" type="password" name="password">
+    <br/>
+    <label for="repeat">Password Again:</label>
+    <input id="repeat" type="password" name="repeat">
+    <div id="pwMess"></div>
+    <br/>
+    <button>Sign Up!</button>
+</form>
+
+
+<script src="js/main.js"></script>
+
+</body>
+</html>

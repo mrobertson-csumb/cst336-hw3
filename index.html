@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta charset="UTF-8">
+    <title>Sign Up Page</title>
+    <link href="https://fonts.googleapis.com/css?family=Berkshire+Swash&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- monthpicker widget -->
+    <script src="https://rawgit.com/zorab47/jquery.ui.monthpicker/master/jquery.ui.monthpicker.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+
+    <!-- bootstrap -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link href="css/styles.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+<main>
+    <h1 class="text-center">California Employment Data</h1>
+    <section>
+        <form id="employment_data" method="get">
+            <fieldset class="form-section">
+                <h2>Selections</h2>
+                <div class="form-item">
+                    <label for="county">County</label>
+                    <select id="county" name="county" class="form-control form-control-lg"></select>
+                    <div id="cnty_msg" class="form-msg"></div>
+                </div>
+                <div class="form-item">
+                    <label for="month_year">Month & Year</label>
+                    <input id="month_year" type="text" name="month_year" class="form-control form-control-lg"/>
+                    <div id="m_y_msg" class="form-msg"></div>
+                </div>
+                <div class="form-span text-center">
+                    <button class="btn btn-primary">Populate Table</button>
+                </div>
+            </fieldset>
+
+        </form>
+    </section>
+    <section>
+        <h2>Data Table</h2>
+        <table id="data_table" class="table table-striped">
+            <thead class="thead">
+            <tr id="header_row"></tr>
+            </thead>
+            <tbody id="data_rows"></tbody>
+        </table>
+    </section>
+</main>
+<footer class="text-center">
+    <hr/>
+    <!-- add logo within the footer -->
+    <figure><img id="csumb_logo" src="img/csumb-logo-black.png" alt="CSUMB Logo" class="apply-body-color"></figure>
+    CST 336 Internet Programming. 2019&copy; Robertson <br/>
+    <strong>Disclaimer:</strong> Most of the information in this page is fictitious, the other parts are copied from
+    other probably bogus sources.<br/>It is intended for academic use only.
+</footer>
+
+
+<script src="js/main.js"></script>
+</body>
+</html>
